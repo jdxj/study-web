@@ -1,0 +1,11 @@
+{
+  "db": {
+    "host": "127.0.0.1:3306",
+    "user": "root",
+    "pass": "root",
+    "name": "study_web"
+  },
+  "server": {
+    "addr": ":8080"
+  }
+}
