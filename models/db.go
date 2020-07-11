@@ -25,3 +25,7 @@ func init() {
 	}
 	database = db
 }
+
+func CloseDB() {
+	database.Close()
+}

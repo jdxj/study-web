@@ -7,6 +7,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/jdxj/study-web/models"
+
 	"github.com/astaxie/beego/logs"
 	"github.com/jdxj/study-web/routers"
 )
@@ -30,6 +32,7 @@ func main() {
 		logs.Error("shutdown server err: %s", err)
 	}
 	<-ctx.Done()
+	models.CloseDB()
 	logs.Info("shutdown")
 	logs.GetBeeLogger().Close()
 }
