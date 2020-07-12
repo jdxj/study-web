@@ -3,10 +3,9 @@ package routers
 import (
 	"net/http"
 
-	"github.com/astaxie/beego/logs"
-
 	"github.com/jdxj/study-web/config"
 
+	"github.com/astaxie/beego/logs"
 	"github.com/gin-gonic/gin"
 )
 
@@ -30,7 +29,9 @@ func NewServer() *http.Server {
 
 func newRouter() *gin.Engine {
 	engine := gin.New()
-	engine.Use(gin.Logger(), gin.Recovery())
+
+	engine.Use(gin.Recovery())
+	engine.Use(RecordUserAgent())
 
 	engine.GET("/", SayHello)
 

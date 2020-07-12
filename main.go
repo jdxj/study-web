@@ -13,11 +13,25 @@ import (
 	"github.com/jdxj/study-web/routers"
 )
 
+const logConfig = `{
+    "filename":"study-web.log",
+    "level":7,
+    "maxlines":0,
+    "maxsize":0,
+    "daily":true,
+    "maxdays":10,
+    "color":true
+}`
+
 func init() {
-	logs.SetLogger(logs.AdapterFile, `{"filename":"study-web.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10,"color":true}`)
+	err := logs.SetLogger(logs.AdapterFile, logConfig)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
+	logs.Info("start")
 	server := routers.NewServer()
 
 	quit := make(chan os.Signal)
