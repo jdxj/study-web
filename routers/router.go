@@ -30,6 +30,9 @@ func NewServer() *http.Server {
 func newRouter() *gin.Engine {
 	engine := gin.New()
 
+	engine.LoadHTMLGlob("templates/*")
+	engine.Static("/assets", "./assets")
+
 	engine.Use(gin.Recovery())
 	engine.Use(RecordUserAgent())
 
@@ -39,7 +42,8 @@ func newRouter() *gin.Engine {
 }
 
 func SayHello(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "hello world",
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{
+		"title": "Hello World!",
+		"link":  "/assets/image.jpg",
 	})
 }

@@ -18,3 +18,5 @@
 
 *.log
 models/config.json
+
+*.jpg
