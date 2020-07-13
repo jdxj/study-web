@@ -15,7 +15,7 @@ func TestDB(t *testing.T) {
 }
 
 func TestAddUserAgent(t *testing.T) {
-	defer CloseDB()
+	defer Close()
 	ua := &models.UserAgent{
 		Value: "test",
 	}

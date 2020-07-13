@@ -30,7 +30,7 @@ func init() {
 	db = database
 }
 
-func CloseDB() {
+func Close() {
 	if err := db.Close(); err != nil {
 		logs.Error("close db failed: %s", err)
 	}

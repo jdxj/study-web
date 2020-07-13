@@ -38,7 +38,7 @@ func main() {
 		logs.Error("shutdown server err: %s", err)
 	}
 	<-ctx.Done()
-	database.CloseDB()
+	database.Close()
 
 	logs.Info("shutdown")
 	logs.GetBeeLogger().Close()
