@@ -8,22 +8,11 @@ import (
 	"time"
 
 	"github.com/jdxj/study-web/config"
-
 	"github.com/jdxj/study-web/database"
 	"github.com/jdxj/study-web/routers"
 
 	"github.com/astaxie/beego/logs"
 )
-
-const logConfig = `{
-    "filename":"study-web.log",
-    "level":7,
-    "maxlines":0,
-    "maxsize":0,
-    "daily":true,
-    "maxdays":10,
-    "color":true
-}`
 
 func init() {
 	loggerCfg := config.GetLogger()
@@ -50,6 +39,7 @@ func main() {
 	}
 	<-ctx.Done()
 	database.CloseDB()
+
 	logs.Info("shutdown")
 	logs.GetBeeLogger().Close()
 }

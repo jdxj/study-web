@@ -4,10 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/astaxie/beego/logs"
-
 	"github.com/jdxj/study-web/config"
 
+	"github.com/astaxie/beego/logs"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -21,14 +20,14 @@ func init() {
 	dbCfg := config.GetDB()
 	dsn := fmt.Sprintf(dsnFormat, dbCfg.User, dbCfg.Pass, dbCfg.Host, dbCfg.Name)
 
-	db, err := sql.Open("mysql", dsn)
+	database, err := sql.Open("mysql", dsn)
 	if err != nil {
 		panic(err)
 	}
-	if err := db.Ping(); err != nil {
+	if err := database.Ping(); err != nil {
 		panic(err)
 	}
-	db = db
+	db = database
 }
 
 func CloseDB() {

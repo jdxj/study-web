@@ -6,6 +6,7 @@ import (
 	"github.com/jdxj/study-web/models"
 )
 
+// tn: table name
 const (
 	tnUserAgent = "user_agent"
 )
