@@ -7,10 +7,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/jdxj/study-web/models"
+	"github.com/jdxj/study-web/config"
+
+	"github.com/jdxj/study-web/database"
+	"github.com/jdxj/study-web/routers"
 
 	"github.com/astaxie/beego/logs"
-	"github.com/jdxj/study-web/routers"
 )
 
 const logConfig = `{
@@ -24,7 +26,8 @@ const logConfig = `{
 }`
 
 func init() {
-	err := logs.SetLogger(logs.AdapterFile, logConfig)
+	loggerCfg := config.GetLogger()
+	err := logs.SetLogger(logs.AdapterFile, loggerCfg.String())
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +49,7 @@ func main() {
 		logs.Error("shutdown server err: %s", err)
 	}
 	<-ctx.Done()
-	models.CloseDB()
+	database.CloseDB()
 	logs.Info("shutdown")
 	logs.GetBeeLogger().Close()
 }

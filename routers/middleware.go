@@ -3,6 +3,7 @@ package routers
 import (
 	"net/http"
 
+	"github.com/jdxj/study-web/database"
 	"github.com/jdxj/study-web/models"
 
 	"github.com/astaxie/beego/logs"
@@ -22,7 +23,7 @@ func RecordUserAgent() gin.HandlerFunc {
 		ua := &models.UserAgent{
 			Value: userAgent,
 		}
-		if err := models.AddUserAgent(ua); err != nil {
+		if err := database.AddUserAgent(ua); err != nil {
 			logs.Error("add user agent failed: %s", err)
 		}
 	}

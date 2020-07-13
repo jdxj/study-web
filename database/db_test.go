@@ -1,20 +1,22 @@
-package models
+package database
 
 import (
 	"testing"
+
+	"github.com/jdxj/study-web/models"
 )
 
 func TestDB(t *testing.T) {
-	err := database.Ping()
+	err := db.Ping()
 	if err != nil {
 		t.Fatalf("%s\n", err)
 	}
-	database.Close()
+	db.Close()
 }
 
 func TestAddUserAgent(t *testing.T) {
 	defer CloseDB()
-	ua := &UserAgent{
+	ua := &models.UserAgent{
 		Value: "test",
 	}
 	if err := AddUserAgent(ua); err != nil {

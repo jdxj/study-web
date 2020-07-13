@@ -1,8 +1,10 @@
-package models
+package database
 
 import (
 	"database/sql"
 	"fmt"
+
+	"github.com/astaxie/beego/logs"
 
 	"github.com/jdxj/study-web/config"
 
@@ -12,7 +14,7 @@ import (
 var (
 	dsnFormat = "%s:%s@tcp(%s)/%s?parseTime=True&loc=Local"
 
-	database *sql.DB
+	db *sql.DB
 )
 
 func init() {
@@ -26,9 +28,11 @@ func init() {
 	if err := db.Ping(); err != nil {
 		panic(err)
 	}
-	database = db
+	db = db
 }
 
 func CloseDB() {
-	database.Close()
+	if err := db.Close(); err != nil {
+		logs.Error("close db failed: %s", err)
+	}
 }

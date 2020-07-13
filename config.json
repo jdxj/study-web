@@ -7,5 +7,14 @@
   },
   "server": {
     "addr": ":8080"
+  },
+  "logger": {
+    "filename": "study-web.log",
+    "level": 7,
+    "maxlines": 0,
+    "maxsize": 0,
+    "daily": true,
+    "maxdays": 10,
+    "color": true
   }
 }

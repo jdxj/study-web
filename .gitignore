@@ -17,6 +17,6 @@
 .idea/
 
 *.log
-models/config.json
+database/config.json
 
 *.jpg
